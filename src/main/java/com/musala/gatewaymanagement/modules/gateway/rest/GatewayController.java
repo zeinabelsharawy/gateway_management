@@ -2,6 +2,8 @@ package com.musala.gatewaymanagement.modules.gateway.rest;
 
 import com.musala.gatewaymanagement.modules.gateway.services.GatewayService;
 import com.musala.gatewaymanagement.modules.gateway.services.dto.GatewayDto;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +12,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/v1/gateways")
+
 public class GatewayController {
 
     private final GatewayService gatewayService;

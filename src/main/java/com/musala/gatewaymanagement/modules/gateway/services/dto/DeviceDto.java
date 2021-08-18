@@ -13,12 +13,14 @@ import java.util.Date;
 @NoArgsConstructor
 public class DeviceDto {
 
+    private long id;
     private String vendor;
     private LocalDateTime createdAt;
     private String status;
     private Long gatewayId;
 
     public DeviceDto(Device device) {
+        this.id= device.getId();
         this.vendor = device.getVendor();
         this.createdAt = device.getCreatedAt();
         this.status = device.getStatus();

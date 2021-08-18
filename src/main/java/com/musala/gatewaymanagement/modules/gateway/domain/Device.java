@@ -33,7 +33,6 @@ public class Device extends BaseEntity<Long> {
     private String status;
 
     @ManyToOne()
-    @NotBlank(message = "Gateway is mandatory")
     @JoinColumn(name = "gateway_id", referencedColumnName = "id")
     private Gateway gateway;
 

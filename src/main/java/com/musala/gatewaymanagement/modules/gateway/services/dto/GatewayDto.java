@@ -10,12 +10,14 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class GatewayDto {
+    private long id;
     private String serialNumber;
     private String name;
     private String ipv4;
 
 
     public GatewayDto(Gateway gateway) {
+        this.id = gateway.getId();
         this.serialNumber = gateway.getSerialNumber();
         this.name = gateway.getName();
         this.ipv4 = gateway.getIpv4();
