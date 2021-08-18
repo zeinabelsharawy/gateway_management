@@ -1,6 +1,7 @@
 package com.musala.gatewaymanagement.modules.gateway.services;
 
 
+import com.musala.gatewaymanagement.base.exception.InvalidInputsException;
 import com.musala.gatewaymanagement.modules.gateway.domain.Gateway;
 import com.musala.gatewaymanagement.modules.gateway.domain.repository.GatewayRepository;
 import com.musala.gatewaymanagement.modules.gateway.services.dto.GatewayDto;
@@ -30,6 +31,7 @@ public class GatewayService {
 
     public void save(GatewayDto dto) {
         Gateway gateway = gatewayMapper.toEntity(dto);
+        validateInputs(gateway);
         gateway.setSerialNumber(getRandomSerialNumber());
         gatewayRepository.save(gateway);
     }
@@ -47,5 +49,14 @@ public class GatewayService {
     private String getRandomSerialNumber() {
         int randomInt = (int) Math.floor(Math.random() * (MAX - MIN + 1) + MIN);
         return (Calendar.getInstance().getTimeInMillis() + randomInt) + "";
+    }
+
+    private void validateInputs(Gateway gateway) {
+        if (gateway.getIpv4() == null || gateway.getIpv4().isEmpty()) {
+            throw new InvalidInputsException("IPV4 is mandatory");
+        }
+        if (gateway.getName() == null || gateway.getName().isEmpty()) {
+            throw new InvalidInputsException("Name is mandatory");
+        }
     }
 }

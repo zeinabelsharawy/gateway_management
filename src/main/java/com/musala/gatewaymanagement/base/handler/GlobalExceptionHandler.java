@@ -1,5 +1,6 @@
 package com.musala.gatewaymanagement.base.handler;
 
+import com.musala.gatewaymanagement.base.exception.InvalidInputsException;
 import com.musala.gatewaymanagement.base.exception.MaxNumOfDevicesExceededException;
 import com.musala.gatewaymanagement.base.response.ErrorResponse;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,11 @@ public class GlobalExceptionHandler {
 //    @ResponseStatus(HttpStatus.FORBIDDEN)
     @ExceptionHandler({MaxNumOfDevicesExceededException.class})
     public ErrorResponse handleDevicesExceededMaxException(MaxNumOfDevicesExceededException e) {
+        return ErrorResponse.internalServerError(e.getMessage());
+    }
+
+    @ExceptionHandler({InvalidInputsException.class})
+    public ErrorResponse handleDevicesExceededMaxException(InvalidInputsException e) {
         return ErrorResponse.internalServerError(e.getMessage());
     }
 
